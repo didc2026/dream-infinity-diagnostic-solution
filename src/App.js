@@ -126,7 +126,43 @@ export default function DreamInfinityWebsite() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-blue-950">
-              Featured Products
+              Featured Pro<section className="py-20 bg-white">
+  <div className="max-w-7xl mx-auto px-6">
+    
+    <h2 className="text-4xl font-bold text-center text-blue-900 mb-14">
+      Product Categories
+    </h2>
+
+    <div className="grid md:grid-cols-3 gap-8">
+
+      {[
+        "IVD Reagents",
+        "Rapid Test Kits",
+        "Laboratory Consumables",
+        "Diagnostic Equipment",
+        "Immunology Products",
+        "Hematology Products"
+      ].map((item, index) => (
+
+        <div
+          key={index}
+          className="bg-blue-50 rounded-3xl p-8 shadow-md hover:shadow-xl transition"
+        >
+          <div className="text-5xl mb-5">🧪</div>
+
+          <h3 className="text-2xl font-bold text-blue-900 mb-3">
+            {item}
+          </h3>
+
+          <p className="text-gray-600">
+            Professional healthcare and diagnostic solutions.
+          </p>
+        </div>
+
+      ))}
+    </div>
+  </div>
+</section>ducts
             </h2>
             <p className="mt-4 text-gray-600 text-lg">
               Trusted diagnostic and laboratory products.
