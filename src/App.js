@@ -19,7 +19,7 @@ export default function DreamInfinityWebsite() {
           <div className="mt-5 md:mt-0 text-sm leading-7 text-right">
             <p>📍 161/4/11, Paikpara, Mirpur-1, Dhaka</p>
             <p>📞 +880 1332-601180</p>
-            <p>✉ dids2004@gmail.com</p>
+            <p>✉ didsinfo2010@gmail.com</p>
           </div>
         </div>
       </header>
