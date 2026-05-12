@@ -130,7 +130,84 @@ export default function DreamInfinityWebsite() {
   <div className="max-w-7xl mx-auto px-6">
     
     <h2 className="text-4xl font-bold text-center text-blue-900 mb-14">
-      Product Categories
+      Product Categories<section className="py-24 bg-gradient-to-b from-white to-blue-50">
+  <div className="max-w-7xl mx-auto px-6">
+
+    <div className="text-center mb-16">
+      <h2 className="text-5xl font-bold text-blue-950">
+        Product Categories
+      </h2>
+
+      <p className="mt-5 text-lg text-gray-600">
+        Advanced Diagnostic & Laboratory Healthcare Solutions
+      </p>
+    </div>
+
+    <div className="grid md:grid-cols-3 gap-10">
+
+      {[
+        {
+          icon: "🧪",
+          title: "IVD Reagents",
+          desc: "High quality diagnostic reagents for accurate laboratory testing."
+        },
+
+        {
+          icon: "🧬",
+          title: "Rapid Test Kits",
+          desc: "Reliable rapid diagnostic kits for modern healthcare solutions."
+        },
+
+        {
+          icon: "🔬",
+          title: "Laboratory Consumables",
+          desc: "Professional laboratory consumables and accessories."
+        },
+
+        {
+          icon: "⚗️",
+          title: "Immunology Products",
+          desc: "Advanced immunology solutions for clinical laboratories."
+        },
+
+        {
+          icon: "🩸",
+          title: "Hematology Products",
+          desc: "Reliable hematology products and laboratory support."
+        },
+
+        {
+          icon: "🏥",
+          title: "Diagnostic Equipment",
+          desc: "Modern medical and diagnostic laboratory instruments."
+        }
+
+      ].map((item, index) => (
+
+        <div
+          key={index}
+          className="bg-white rounded-[30px] p-10 shadow-lg border border-gray-100 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300"
+        >
+
+          <div className="text-6xl mb-6">
+            {item.icon}
+          </div>
+
+          <h3 className="text-2xl font-bold text-blue-900 mb-4">
+            {item.title}
+          </h3>
+
+          <p className="text-gray-600 leading-8">
+            {item.desc}
+          </p>
+
+        </div>
+
+      ))}
+
+    </div>
+  </div>
+</section>
     </h2>
 
     <div className="grid md:grid-cols-3 gap-8">
