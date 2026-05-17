@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import {
   FlaskConical,
   TestTube,
@@ -8,6 +10,8 @@ import {
   MapPin,
   MessageCircle,
   Dna,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
 
 const products = [
@@ -38,6 +42,13 @@ const products = [
     description:
       "Advanced clinical biochemistry reagents and laboratory solutions for precise diagnostic analysis.",
 
+    subcategories: [
+      "Biochemistry Analyzer",
+      "Clinical Chemistry Reagents",
+      "Calibrator",
+      "Quality Control Serum",
+    ],
+
     icon: FlaskConical,
   },
 
@@ -45,6 +56,13 @@ const products = [
     title: "Immunology Product",
     description:
       "Innovative immunology products developed for dependable diagnostic and healthcare applications.",
+
+    subcategories: [
+      "ELISA Kits",
+      "Hormone Test Kits",
+      "Tumor Marker Kits",
+      "Immunology Reagents",
+    ],
 
     icon: ShieldPlus,
   },
@@ -54,6 +72,13 @@ const products = [
     description:
       "Professional hematology products ensuring accurate blood analysis and laboratory efficiency.",
 
+    subcategories: [
+      "Hematology Analyzer",
+      "CBC Reagents",
+      "Blood Control",
+      "Diluent & Cleaner",
+    ],
+
     icon: HeartPulse,
   },
 
@@ -62,11 +87,25 @@ const products = [
     description:
       "Modern molecular biology solutions for advanced research, PCR, and diagnostic laboratory applications.",
 
+    subcategories: [
+      "PCR Kits",
+      "DNA Extraction Kits",
+      "RNA Extraction Kits",
+      "Real-Time PCR Reagents",
+    ],
+
     icon: Dna,
   },
 ];
 
 export default function App() {
+
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const toggleCard = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 font-sans">
 
@@ -241,60 +280,6 @@ export default function App() {
 
       </section>
 
-      {/* MISSION & VISION */}
-      <section className="py-20 bg-gradient-to-b from-blue-50 to-white">
-
-        <div className="max-w-7xl mx-auto px-6">
-
-          <div className="text-center mb-14">
-
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Mission & Vision
-            </h2>
-
-            <p className="text-lg text-gray-600">
-              Dedicated to innovation, quality, and healthcare excellence.
-            </p>
-
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-
-            <div className="bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
-
-              <h3 className="text-2xl font-bold text-blue-700 mb-5">
-                Our Mission
-              </h3>
-
-              <p className="text-base text-gray-600 leading-relaxed">
-                To deliver dependable, innovative, and high-quality
-                diagnostic and laboratory products that help healthcare
-                professionals ensure accurate diagnosis and efficient
-                patient care.
-              </p>
-
-            </div>
-
-            <div className="bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
-
-              <h3 className="text-2xl font-bold text-blue-700 mb-5">
-                Our Vision
-              </h3>
-
-              <p className="text-base text-gray-600 leading-relaxed">
-                To become one of the most trusted diagnostic and
-                healthcare solution providers in Bangladesh through
-                quality service, innovation, and long-term customer trust.
-              </p>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
       {/* PRODUCT SECTION */}
       <section className="py-20 bg-white">
 
@@ -307,49 +292,82 @@ export default function App() {
             </h2>
 
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Delivering innovative healthcare and laboratory products
-              with reliability, precision, and international quality standards.
+              Click any product category to explore available diagnostic products.
             </p>
 
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="space-y-6">
 
             {products.map((item, index) => (
+
               <div
                 key={index}
-                className="bg-white rounded-3xl p-8 shadow-md border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300"
+                className="bg-white rounded-3xl shadow-md border border-gray-100 overflow-hidden"
               >
 
-                <div className="w-14 h-14 rounded-2xl bg-blue-100 flex items-center justify-center mb-5">
-                  <item.icon className="text-blue-600 w-7 h-7" />
-                </div>
+                {/* HEADER */}
+                <button
+                  onClick={() => toggleCard(index)}
+                  className="w-full flex items-center justify-between p-8 text-left hover:bg-blue-50 transition-all"
+                >
 
-                <h3 className="text-xl font-bold text-gray-900 mb-4">
-                  {item.title}
-                </h3>
+                  <div className="flex items-center gap-5">
 
-                <p className="text-gray-600 leading-relaxed mb-5 text-sm">
-                  {item.description}
-                </p>
+                    <div className="w-14 h-14 rounded-2xl bg-blue-100 flex items-center justify-center">
+                      <item.icon className="text-blue-600 w-7 h-7" />
+                    </div>
 
-                {/* SUB CATEGORY */}
-                {item.subcategories && (
-                  <div className="space-y-2">
+                    <div>
 
-                    {item.subcategories.map((sub, i) => (
-                      <div
-                        key={i}
-                        className="bg-blue-50 text-blue-700 px-4 py-2 rounded-xl text-sm font-medium"
-                      >
-                        {sub}
-                      </div>
-                    ))}
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">
+                        {item.title}
+                      </h3>
+
+                      <p className="text-gray-600 text-sm">
+                        {item.description}
+                      </p>
+
+                    </div>
 
                   </div>
+
+                  <div>
+                    {openIndex === index ? (
+                      <ChevronUp className="text-blue-600 w-6 h-6" />
+                    ) : (
+                      <ChevronDown className="text-blue-600 w-6 h-6" />
+                    )}
+                  </div>
+
+                </button>
+
+                {/* SUB CATEGORY */}
+                {openIndex === index && (
+
+                  <div className="px-8 pb-8">
+
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+
+                      {item.subcategories.map((sub, i) => (
+
+                        <div
+                          key={i}
+                          className="bg-blue-50 text-blue-700 px-4 py-3 rounded-xl text-sm font-medium hover:bg-blue-100 transition"
+                        >
+                          {sub}
+                        </div>
+
+                      ))}
+
+                    </div>
+
+                  </div>
+
                 )}
 
               </div>
+
             ))}
 
           </div>
@@ -358,12 +376,11 @@ export default function App() {
 
       </section>
 
-      {/* PROFESSIONAL FOOTER */}
+      {/* FOOTER */}
       <footer className="bg-gradient-to-r from-black via-gray-900 to-black text-gray-300 pt-14 pb-8">
 
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-10">
 
-          {/* COMPANY INFO */}
           <div>
 
             <h3 className="text-2xl font-bold text-white mb-4">
@@ -388,7 +405,6 @@ export default function App() {
 
           </div>
 
-          {/* QUICK LINKS */}
           <div>
 
             <h3 className="text-xl font-semibold text-white mb-4">
@@ -399,10 +415,6 @@ export default function App() {
 
               <li className="hover:text-white transition">
                 About Company
-              </li>
-
-              <li className="hover:text-white transition">
-                Mission & Vision
               </li>
 
               <li className="hover:text-white transition">
@@ -417,7 +429,6 @@ export default function App() {
 
           </div>
 
-          {/* CONTACT */}
           <div>
 
             <h3 className="text-xl font-semibold text-white mb-4">
@@ -452,7 +463,6 @@ export default function App() {
 
         </div>
 
-        {/* BOTTOM */}
         <div className="border-t border-gray-800 mt-10 pt-5 text-center text-gray-500 text-sm">
 
           <p>
