@@ -148,7 +148,7 @@ export default function App() {
             </a>
 
             <a
-              href="mailto:dimsinfo2010@gmail.com"
+              href="mailto:didsinfo2010@gmail.com"
               className="bg-white text-blue-800 hover:bg-blue-100 px-7 py-3 rounded-xl font-semibold shadow-lg transition-all duration-300"
             >
               Contact by Email
@@ -229,7 +229,7 @@ export default function App() {
                   </p>
 
                   <h4 className="text-lg font-semibold text-gray-800">
-                    dimsinfo2010@gmail.com
+                    didsinfo2010@gmail.com
                   </h4>
                 </div>
 
@@ -397,7 +397,7 @@ export default function App() {
 
               <p>📞 +8801332601180</p>
 
-              <p>✉️ dimsinfo2010@gmail.com</p>
+              <p>✉️ didsinfo2010@gmail.com</p>
 
               <p>📍 Dhaka, Bangladesh</p>
 
@@ -451,7 +451,7 @@ export default function App() {
               </a>
 
               <a
-                href="mailto:dimsinfo2010@gmail.com"
+                href="mailto:didsinfo2010@gmail.com"
                 className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-xl font-semibold text-center transition"
               >
                 Send Email
