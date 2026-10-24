@@ -1,26 +1,192 @@
 @import "tailwindcss";
 
+/* =========================================================
+   DILS - GLOBAL STYLES
+   Compact • Professional • Corporate
+========================================================= */
+
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0f172a;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
+  margin: 0;
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* =========================================================
+   GENERAL TYPOGRAPHY
+========================================================= */
+
+p {
+  line-height: 1.5 !important;
+}
+
+/* Make normal text slightly more compact */
+
+.text-base {
+  line-height: 1.5 !important;
+}
+
+.text-lg {
+  line-height: 1.55 !important;
+}
+
+/* =========================================================
+   HEADINGS
+========================================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.12;
+}
+
+/* =========================================================
+   HERO TEXT
+========================================================= */
+
+section:first-of-type p {
+  line-height: 1.5 !important;
+}
+
+/* =========================================================
+   ABOUT SECTION
+========================================================= */
+
+#about {
+  padding-top: 3.5rem !important;
+  padding-bottom: 3.5rem !important;
+}
+
+#about p {
+  line-height: 1.5 !important;
+}
+
+/* =========================================================
+   PRODUCT SECTION
+========================================================= */
+
+#products {
+  padding-top: 3.5rem !important;
+  padding-bottom: 3.5rem !important;
+}
+
+#products p {
+  line-height: 1.45 !important;
+}
+
+/* Product accordion spacing */
+
+#products .space-y-4 > * + * {
+  margin-top: 0.7rem !important;
+}
+
+/* =========================================================
+   SERVICES SECTION
+========================================================= */
+
+#services {
+  padding-top: 3.5rem !important;
+  padding-bottom: 3.5rem !important;
+}
+
+#services p {
+  line-height: 1.5 !important;
+}
+
+/* =========================================================
+   CONTACT SECTION
+========================================================= */
+
+#contact {
+  padding-top: 3.5rem !important;
+  padding-bottom: 3.5rem !important;
+}
+
+#contact p {
+  line-height: 1.5 !important;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer p {
+  line-height: 1.5 !important;
+}
+
+/* =========================================================
+   BUTTONS & LINKS
+========================================================= */
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 640px) {
+  p {
+    line-height: 1.45 !important;
+  }
+
+  .text-base {
+    line-height: 1.45 !important;
+  }
+
+  .text-lg {
+    line-height: 1.5 !important;
+  }
+
+  #about,
+  #products,
+  #services,
+  #contact {
+    padding-top: 2.75rem !important;
+    padding-bottom: 2.75rem !important;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    line-height: 1.1;
+  }
+}
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   IMAGE PERFORMANCE
+========================================================= */
+
+img {
+  max-width: 100%;
+  height: auto;
 }
