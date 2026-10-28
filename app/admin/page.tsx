@@ -18,7 +18,6 @@ type Product = {
 };
 
 const quoteProducts = [
-    { name: "Probe Cleanser", category: "Hematology Products", brand: "Please confirm", pack: "50 mL" },
     { name: "VDRL / RPR Latex Reagent", category: "Serology", brand: "Rapid Lab", pack: "Complete kit" },
     { name: "Welfelix Set (OX2, OXK, OX19)", category: "Serology", brand: "Rapid Lab", pack: "100T" },
     { name: "Widal Set (TO, TH, AH, BH)", category: "Serology", brand: "Rapid Lab", pack: "100T" },

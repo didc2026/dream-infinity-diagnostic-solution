@@ -47,47 +47,7 @@ const services = [
   },
 ];
 
-const quoteProducts = [
-  { name: "Probe Cleanser", category: "Hematology Products", brand: "Please confirm", pack: "50 mL" },
-  { name: "VDRL / RPR Latex Reagent", category: "Serology", brand: "Rapid Lab", pack: "Complete kit" },
-  { name: "Welfelix Set (OX2, OXK, OX19)", category: "Serology", brand: "Rapid Lab", pack: "100T" },
-  { name: "Widal Set (TO, TH, AH, BH)", category: "Serology", brand: "Rapid Lab", pack: "100T" },
-  { name: "HCG Latex Reagent", category: "Serology", brand: "Please confirm", pack: "2 mL" },
-  { name: "CRP Latex Reagent", category: "Serology", brand: "Please confirm", pack: "100T" },
-  { name: "RF/RA Latex Reagent", category: "Serology", brand: "Please confirm", pack: "100T" },
-  { name: "ASO Latex Reagent", category: "Serology", brand: "Please confirm", pack: "100T" },
-  { name: "CRP Complete Kit", category: "Serology", brand: "Please confirm", pack: "100T" },
-  { name: "RF/RA Latex Complete Kit", category: "Serology", brand: "GenBioCal", pack: "100T" },
-  { name: "ASO Latex Complete Kit", category: "Serology", brand: "GenBioCal", pack: "100T" },
-  { name: "LDH Kit", category: "Clinical Biochemistry", brand: "GenBioCal", pack: "100 mL" },
-  { name: "Zinc Kit", category: "Clinical Biochemistry", brand: "GenBioCal", pack: "100 mL" },
-  { name: "Magnesium Kit", category: "Clinical Biochemistry", brand: "GenBioCal", pack: "100 mL" },
-  { name: "Ammonia Kit", category: "Clinical Biochemistry", brand: "GenBioCal", pack: "25 mL" },
-  { name: "ADA Kit", category: "Clinical Biochemistry", brand: "GenBioCal", pack: "30 mL" },
-  { name: "Lactate Kit", category: "Clinical Biochemistry", brand: "GenBioCal", pack: "20 mL" },
-  { name: "Gamma GT Kit", category: "Clinical Biochemistry", brand: "GenBioCal", pack: "100 mL" },
-  { name: "D-Dimer Turbilatex Kit", category: "Coagulation", brand: "GenBioCal", pack: "20 mL" },
-  { name: "APTT Kit", category: "Coagulation", brand: "GenBioCal", pack: "5 mL" },
-  { name: "Prothrombin Time (PT) Kit", category: "Coagulation", brand: "GenBioCal", pack: "50 mL" },
-  { name: "CK-NAC Kit", category: "Clinical Biochemistry", brand: "GenBioCal", pack: "48 mL" },
-  { name: "CK-MB Kit", category: "Clinical Biochemistry", brand: "GenBioCal", pack: "48 mL" },
-  { name: "Potassium Kit", category: "Clinical Biochemistry", brand: "GenBioCal", pack: "50 mL" },
-  { name: "Sodium Kit", category: "Clinical Biochemistry", brand: "GenBioCal", pack: "50 mL" },
-  { name: "Hemoglobin Reagent", category: "Clinical Biochemistry", brand: "GenBioCal", pack: "100 mL" },
-  { name: "TIBC Kit", category: "Clinical Biochemistry", brand: "GenBioCal", pack: "24 mL" },
-  { name: "Serum Iron Kit", category: "Clinical Biochemistry", brand: "GenBioCal", pack: "100 mL" },
-  { name: "Calcium Kit", category: "Clinical Biochemistry", brand: "GenBioCal", pack: "100 mL" },
-  { name: "Lipase Kit", category: "Clinical Biochemistry", brand: "GenBioCal", pack: "24 mL" },
-  { name: "Triglyceride Kit", category: "Clinical Biochemistry", brand: "GenBioCal", pack: "100 mL" },
-  { name: "LDL Direct Kit", category: "Clinical Biochemistry", brand: "GenBioCal", pack: "40 mL" },
-  { name: "HDL Direct Kit", category: "Clinical Biochemistry", brand: "GenBioCal", pack: "80 mL" },
-  { name: "Blood Grouping Reagent – ABO System", category: "Other Laboratory Products", brand: "Rapid Lab", pack: "Set" },
-  { name: "Glucose Reagent", category: "Clinical Biochemistry", brand: "GenBioCal", pack: "1000 mL" },
-  { name: "Alkaline Phosphatase Kit", category: "Clinical Biochemistry", brand: "GenBioCal", pack: "100 mL" },
-  { name: "Alpha Amylase Kit", category: "Clinical Biochemistry", brand: "GenBioCal", pack: "50 mL" },
-  { name: "Urinalysis Test Strips", category: "Urinalysis", brand: "Please confirm", pack: "Please confirm" },
-  { name: "Microbiology Consumables", category: "Microbiology", brand: "Please confirm", pack: "Please confirm" },
-];
+
 
 const PHONE = "+8801332601180";
 const WHATSAPP = "8801332601180";
@@ -181,22 +141,16 @@ export default function Home() {
     return () => { cancelled = true; };
   }, []);
 
-  // Keep every original website product. Firestore values override matching products by name,
-  // while new Admin-created products are appended instead of replacing the original catalog.
+  // Firestore is the single source of truth: deleted Admin products must not
+  // reappear from a hard-coded fallback list.
   const catalogProducts: CatalogProduct[] = useMemo(() => {
-    const savedProducts = (firestoreProducts ?? []).map((product) => ({
+    return (firestoreProducts ?? []).map((product) => ({
       ...product,
-      category: product.category === "Serology & Immunology" ? "Serology" : product.category,
+      category:
+        product.category === "Serology & Immunology"
+          ? "Serology"
+          : product.category,
     }));
-    const normalizeName = (name: string) => name.trim().toLocaleLowerCase();
-    const savedByName = new Map(savedProducts.map((product) => [normalizeName(product.name), product]));
-    const originalNames = new Set(quoteProducts.map((product) => normalizeName(product.name)));
-    const originalWithEdits = quoteProducts.map((original) => {
-      const saved = savedByName.get(normalizeName(original.name));
-      return saved ? { ...original, ...saved } : original;
-    });
-    const adminOnlyProducts = savedProducts.filter((product) => !originalNames.has(normalizeName(product.name)));
-    return [...originalWithEdits, ...adminOnlyProducts];
   }, [firestoreProducts]);
 
   const filteredProducts = useMemo(() => {
