@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "./lib/firebase";
+import Image from "next/image";
 import {
   FlaskConical,
   TestTube,
@@ -257,7 +258,14 @@ export default function Home() {
       <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 shadow-[0_5px_22px_rgba(15,23,42,0.045)] backdrop-blur-xl">
         <div className="mx-auto flex min-h-[78px] max-w-[1440px] items-center gap-4 px-4 py-3 sm:px-6 lg:px-8 xl:gap-5 xl:py-0">
           <a href="#home" className="flex shrink-0 items-center gap-3" aria-label="Dream Infinity Laboratory Solution home">
-            <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-900 to-teal-700 text-white shadow-lg shadow-blue-950/15"><FlaskConical className="h-5 w-5" /></span>
+            <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-900 to-teal-700 text-white shadow-lg shadow-blue-950/15">
+              <Image
+                src="/dils-logo.png"
+                alt="Dream Infinity Laboratory Solution"
+                width={64}
+                height={64}
+                className="h-10 w-auto object-contain"
+              />            </span>
             <span className="leading-none"><span className="block whitespace-nowrap text-[13px] font-black tracking-[0.08em] text-slate-950 sm:text-[15px]">DREAM INFINITY</span><span className="mt-1.5 block whitespace-nowrap text-[8px] font-bold uppercase tracking-[0.07em] text-teal-700 sm:text-[9px] sm:tracking-[0.12em]">LABORATORY SOLUTION <span className="font-black text-blue-900">(DILS)</span></span></span>
           </a>
 
@@ -415,7 +423,18 @@ export default function Home() {
 
       <section id="contact" className="bg-slate-950 py-12 text-white sm:py-16"><div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:items-center"><div><p className="mb-2 text-xs font-bold uppercase tracking-[2px] text-cyan-300">Contact DILS</p><h2 className="text-2xl font-extrabold sm:text-4xl">Request a Quotation</h2><p className="mt-4 max-w-xl text-sm leading-7 text-slate-300">Send us your product list and required quantities. We will confirm pricing, availability and delivery details.</p><div className="mt-6 flex flex-col gap-3 sm:flex-row"><a href={quoteWhatsApp()} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-5 py-3 font-bold text-white transition hover:bg-emerald-700"><MessageCircle className="h-5 w-5" /> WhatsApp</a><a href={quoteEmail()} className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-700 px-5 py-3 font-bold text-white transition hover:bg-blue-800"><Mail className="h-5 w-5" /> Email Enquiry</a></div></div><div className="rounded-2xl bg-white p-5 text-slate-800 shadow-xl sm:p-7"><h3 className="mb-4 text-xl font-extrabold">Contact Information</h3><div className="space-y-3"><a href={`tel:${PHONE}`} className="flex items-start gap-3 rounded-xl p-3 hover:bg-slate-50"><Phone className="mt-1 h-5 w-5 shrink-0 text-blue-700" /><div><p className="text-xs text-slate-500">Mobile Number</p><p className="mt-1 text-sm font-bold text-slate-900">+880 1332-601180</p></div></a><a href={`mailto:${EMAIL}`} className="flex items-start gap-3 rounded-xl p-3 hover:bg-slate-50"><Mail className="mt-1 h-5 w-5 shrink-0 text-blue-700" /><div className="min-w-0"><p className="text-xs text-slate-500">Email Address</p><p className="mt-1 break-all text-sm font-bold text-slate-900">{EMAIL}</p></div></a><a href={quoteWhatsApp()} target="_blank" rel="noreferrer" className="flex items-start gap-3 rounded-xl p-3 hover:bg-slate-50"><MessageCircle className="mt-1 h-5 w-5 shrink-0 text-emerald-600" /><div><p className="text-xs text-slate-500">WhatsApp</p><p className="mt-1 text-sm font-bold text-emerald-600">Chat on WhatsApp</p></div></a><div className="flex items-start gap-3 rounded-xl p-3"><MapPin className="mt-1 h-5 w-5 shrink-0 text-red-500" /><div><p className="text-xs text-slate-500">Office Location</p><p className="mt-1 text-sm font-bold text-slate-900">Dhaka, Bangladesh</p></div></div></div></div></div></section>
 
-      <footer className="bg-black py-8 text-slate-400 sm:py-10"><div className="mx-auto max-w-7xl px-4 sm:px-6"><div className="grid gap-7 sm:grid-cols-2 md:grid-cols-3 md:gap-10"><div><div className="flex items-center gap-3"><div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-700 text-white"><FlaskConical className="h-5 w-5" /></div><div><h3 className="font-extrabold text-white">DREAM INFINITY</h3><p className="text-[10px] font-semibold uppercase tracking-[1.5px] text-cyan-400">Laboratory Solution</p></div></div><p className="mt-4 max-w-md text-sm leading-6">Dream Infinity Laboratory Solution (DILS) supplies diagnostic, medical and laboratory products across Bangladesh.</p></div><div><h3 className="mb-3 font-bold text-white">Quick Links</h3><div className="flex flex-col gap-2.5 text-sm"><a href="#about" className="hover:text-white">About Company</a><a href="#products" className="hover:text-white">Product Catalog</a><a href="#services" className="hover:text-white">Our Services</a><a href="#contact" className="hover:text-white">Contact</a></div></div><div><h3 className="mb-3 font-bold text-white">Contact</h3><div className="space-y-2.5 text-sm"><a href={`tel:${PHONE}`} className="block hover:text-white">+880 1332-601180</a><a href={`mailto:${EMAIL}`} className="block break-all hover:text-white">{EMAIL}</a><p>Dhaka, Bangladesh</p><a href="https://www.dilsinfobd.com" target="_blank" rel="noreferrer" className="block hover:text-white">www.dilsinfobd.com</a></div></div></div><div className="mt-7 border-t border-slate-800 pt-5 text-center text-xs text-slate-500 sm:mt-9 sm:pt-6 sm:text-sm">© 2026 Dream Infinity Laboratory Solution (DILS). All Rights Reserved.</div></div></footer>
+      <footer className="bg-black py-8 text-slate-400 sm:py-10">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6"><div className="grid gap-7 sm:grid-cols-2 md:grid-cols-3 md:gap-10"><div><div className="flex items-center gap-3">
+          <div className="flex h-12 w-44 items-center">
+            <Image
+              src="/dils-logo.png"
+              alt="Dream Infinity Laboratory Solution (DILS)"
+              width={176}
+              height={72}
+              className="h-12 w-auto object-contain object-left"
+            />
+          </div>
+          <div><h3 className="font-extrabold text-white">DREAM INFINITY</h3><p className="text-[10px] font-semibold uppercase tracking-[1.5px] text-cyan-400">Laboratory Solution</p></div></div><p className="mt-4 max-w-md text-sm leading-6">Dream Infinity Laboratory Solution (DILS) supplies diagnostic, medical and laboratory products across Bangladesh.</p></div><div><h3 className="mb-3 font-bold text-white">Quick Links</h3><div className="flex flex-col gap-2.5 text-sm"><a href="#about" className="hover:text-white">About Company</a><a href="#products" className="hover:text-white">Product Catalog</a><a href="#services" className="hover:text-white">Our Services</a><a href="#contact" className="hover:text-white">Contact</a></div></div><div><h3 className="mb-3 font-bold text-white">Contact</h3><div className="space-y-2.5 text-sm"><a href={`tel:${PHONE}`} className="block hover:text-white">+880 1332-601180</a><a href={`mailto:${EMAIL}`} className="block break-all hover:text-white">{EMAIL}</a><p>Dhaka, Bangladesh</p><a href="https://www.dilsinfobd.com" target="_blank" rel="noreferrer" className="block hover:text-white">www.dilsinfobd.com</a></div></div></div><div className="mt-7 border-t border-slate-800 pt-5 text-center text-xs text-slate-500 sm:mt-9 sm:pt-6 sm:text-sm">© 2026 Dream Infinity Laboratory Solution (DILS). All Rights Reserved.</div></div></footer>
       {expandedProduct?.imageUrl && (
         <div
           className="fixed inset-0 z-[2147482000] flex cursor-zoom-out items-center justify-center bg-slate-950/90 p-3 sm:p-6"
